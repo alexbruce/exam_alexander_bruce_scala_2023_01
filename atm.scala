@@ -6,10 +6,8 @@ import scala.util.control.Breaks._
 
 object AtmApp extends App {
 
-    //case class User(val AccountOwnerID: String, val firstname: String, val surname: String, val mobile: String)
     enum Type:
         case Saving, Cheque
-    val hello = 1
 
     class SavingAccount(val AccountOwnerID: String, val AccountNumber: String, val AccountType: String, var OpeningBalance: Double, val DatabaseIndex: Any = null)
 
