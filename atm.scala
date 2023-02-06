@@ -24,13 +24,9 @@ object AtmApp2 extends App {
       }
     }
 
-    class SavingAccount(AccountOwnerID: String, AccountNumber: String, AccountType: String, OpeningBalance: BigDecimal, val DatabaseIndex: Any = null) extends Account(AccountOwnerID, AccountNumber, AccountType, OpeningBalance) {
+    class SavingAccount(AccountOwnerID: String, AccountNumber: String, AccountType: String, OpeningBalance: BigDecimal, val DatabaseIndex: Any = null) extends Account(AccountOwnerID, AccountNumber, AccountType, OpeningBalance)
 
-    }
-
-    class ChequeAccount(AccountOwnerID: String, AccountNumber: String, AccountType: String, OpeningBalance: BigDecimal, val DatabaseIndex: Any = null) extends Account(AccountOwnerID, AccountNumber, AccountType, OpeningBalance) {
-
-    }
+    class ChequeAccount(AccountOwnerID: String, AccountNumber: String, AccountType: String, OpeningBalance: BigDecimal, val DatabaseIndex: Any = null) extends Account(AccountOwnerID, AccountNumber, AccountType, OpeningBalance)
 
     class User(val AccountOwnerID: String, val firstname: String, val surname: String, val mobile: String) {
       def readAccountOwner: String = AccountOwnerID
@@ -166,14 +162,14 @@ object AtmApp2 extends App {
               case (s"${number}|||${accNum}|||Cheque|||${bal}",linenumber) => ChequeAccount(number, accNum, "Cheque", BigDecimal(bal), linenumber)
           })
       }
-      
+
       def importUserData(): List[User] = {
         Source.fromFile("data/UserInfo.txt").getLines().toList.drop(1).map({
           case (s"${firstname},${surname},${mobile},${accountOwnerID}") => User(accountOwnerID, firstname, surname, mobile)
         })
       }
     }
-  
+
     @main def run(): Unit = {
       val atm = ATM()
       atm.beginTransaction()
